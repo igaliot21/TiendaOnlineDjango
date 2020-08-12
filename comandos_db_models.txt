@@ -1,0 +1,18 @@
+comandos para ejectuar en consola python
+
+>>> from gestionPedidos.models import Articulos
+>>> art=Articulos(nombre='Mesa',seccion='Decoración',precio=90)
+>>> art.save()
+>>> art2=Articulos(nombre='Camisa',seccion='Confección',precio=75) 
+>>> art2.save()
+>>> art3=Articulos.objects.create(nombre='Taladro',seccion='Ferreteria',precio=65)  
+>>> art.precio=95
+>>> art.save()
+>>> art5=Articulos.objects.get(id=2)   
+>>> art5.delete()
+(1, {'gestionPedidos.Articulos': 1})
+>>> Lista=Articulos.objects.all()
+>>> Lista
+<QuerySet [<Articulos: Articulos object (1)>, <Articulos: Articulos object (3)>]>
+>>> Lista.query.__str__()
+'SELECT "gestionPedidos_articulos"."id", "gestionPedidos_articulos"."nombre", "gestionPedidos_articulos"."seccion", "gestionPedidos_articulos"."precio" FROM "gestionPedidos_articulos"'
