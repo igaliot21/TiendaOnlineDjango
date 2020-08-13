@@ -16,3 +16,7 @@ comandos para ejectuar en consola python
 <QuerySet [<Articulos: Articulos object (1)>, <Articulos: Articulos object (3)>]>
 >>> Lista.query.__str__()
 'SELECT "gestionPedidos_articulos"."id", "gestionPedidos_articulos"."nombre", "gestionPedidos_articulos"."seccion", "gestionPedidos_articulos"."precio" FROM "gestionPedidos_articulos"'
+
+>>> from gestionPedidos.models import Cliente 
+>>> cli=Cliente(nombre='Pepe',direccion='Mi casa',email='mail@example.com',telefono='555457')    
+>>> cli.save()
