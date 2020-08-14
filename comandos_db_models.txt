@@ -20,3 +20,20 @@ comandos para ejectuar en consola python
 >>> from gestionPedidos.models import Cliente 
 >>> cli=Cliente(nombre='Pepe',direccion='Mi casa',email='mail@example.com',telefono='555457')    
 >>> cli.save()
+
+>>> from gestionPedidos.models import Articulos
+>>> Articulos.objects.filter(seccion='Deportes')  
+<QuerySet [<Articulos: Articulos object (5)>, <Articulos: Articulos object (6)>]>
+
+>>> from gestionPedidos.models import Articulos
+>>> Articulos.objects.filter(seccion='Deportes') 
+<QuerySet [<Articulos: El nombre es: Balón la sección es: Deportes y el precio es: 25>, <Articulos: El nombre es: Raqueta la sección es: Deportes y el precio es: 105>]>
+>>> Articulos.objects.filter(nombre='Mesa',seccion='Decoración')  
+<QuerySet [<Articulos: El nombre es: Mesa la sección es: Decoración y el precio es: 90>]>
+>>> Articulos.objects.filter(seccion='Deportes',precio__gte=100)  
+<QuerySet [<Articulos: El nombre es: Raqueta la sección es: Deportes y el precio es: 105>]>
+>>> Articulos.objects.filter(precio__gte=50).order_by('precio')  
+<QuerySet [<Articulos: El nombre es: Lámpara la sección es: Decoración y el precio es: 70>, <Articulos: El nombre es: Mesa la sección es: Decoración y el precio es: 90>, <Articulos: El nombre es: Raqueta la sección es: Deportes y el precio es: 105>, <Articulos: El nombre es: Tren Eléctrico la sección es: Juguetería y el precio es: 135>]>
+>>> Articulos.objects.filter(precio__gte=50).order_by('-precio')  
+<QuerySet [<Articulos: El nombre es: Tren Eléctrico la sección es: Juguetería y el precio es: 135>, <Articulos: El nombre es: Raqueta la sección es: Deportes y el precio es: 105>, <Articulos: El nombre es: Mesa la sección es: Decoración y el 
+precio es: 90>, <Articulos: El nombre es: Lámpara la sección es: Decoración y el precio es: 70>]>
