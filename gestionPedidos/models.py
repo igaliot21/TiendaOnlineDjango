@@ -5,8 +5,9 @@ from django.db import models
 
 class Cliente(models.Model):
     nombre = models.CharField(max_length=30)
-    direccion = models.CharField(max_length=50)
-    email = models.EmailField(blank=True, null=True)
+    direccion = models.CharField(max_length=50, verbose_name="La Dirección")
+    email = models.EmailField(blank=True, null=True,
+                              verbose_name="Correo Electrónico")
     telefono = models.CharField(max_length=7)
 
     def __str__(self):
