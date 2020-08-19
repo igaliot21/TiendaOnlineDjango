@@ -12,11 +12,14 @@ class ClientesAdmin(admin.ModelAdmin):
 class ArticulosAdmin(admin.ModelAdmin):
     list_display = ("nombre", "seccion", "precio")
     search_fields = ("nombre", "seccion", "precio")
+    list_filter = ("seccion",)
 
 
 class PedidosAdmin(admin.ModelAdmin):
     list_display = ("numero", "fecha", "entregado")
     search_fields = ("numero", "fecha", "entregado")
+    list_filter = ("entregado", "fecha")
+    date_hierarchy = "fecha"
 
 
 admin.site.register(Cliente, ClientesAdmin)
