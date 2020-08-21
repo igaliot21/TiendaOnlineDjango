@@ -55,7 +55,7 @@ ROOT_URLCONF = 'TiendaOnline.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["gestionPedidos/Templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
