@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.template import Template, Context, loader
 from django.shortcuts import render
+from django.core.mail import send_mail
+from django.conf import settings
 from gestionPedidos.models import Articulos
 import datetime
 
@@ -29,6 +31,14 @@ def buscar(request):
 
 def contacto(request):
     if request.method == "POST":
+        subject = request.POST["asunto"] + " " + request.POST["email"]
+        message = request.POST["mensaje"] + " " + request.POST["email"]
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [
+            "josem.izquierdo.galiot@gmail.com", "igaliot21@gmail.com"]
+        send_mail(subject, message, email_from,
+                  recipient_list, fail_silently=False)
+
         return render(request, "gracias.html")
 
     return render(request, "contacto.html")
