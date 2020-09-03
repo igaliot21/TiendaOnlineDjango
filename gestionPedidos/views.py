@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.core.mail import send_mail
 from django.conf import settings
 from gestionPedidos.models import Articulos
+from gestionPedidos.forms import FormularioContacto
 import datetime
 
 # Create your views here.
@@ -42,3 +43,21 @@ def contacto(request):
         return render(request, "gracias.html")
 
     return render(request, "contacto.html")
+
+
+def contactoforms(request):
+    if request.method == "POST":
+        miFormulario = FormularioContacto(request.POST)
+        if miFormulario.is_valid():
+            dataForm = miFormulario.cleaned_data
+            subject = dataForm["asunto"] + " " + dataForm["email"]
+            message = dataForm["mensaje"] + " " + dataForm["email"]
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = ["josem.izquierdo.galiot@gmail.com"]
+            send_mail(subject, message, email_from,
+                      recipient_list, fail_silently=False)
+            return render(request, "gracias.html")
+    else:
+        miFormulario = FormularioContacto()
+
+    return render(request, "contactoforms.html", {"form": miFormulario})
